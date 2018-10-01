@@ -28,7 +28,7 @@ import com.example.android.android_me.data.AndroidImageAssets;
 
 
 // This fragment displays all of the AndroidMe images in one large list
-// The list appears as a grid of images
+//// The list appears as a grid of images
 public class MasterListFragment extends Fragment {
 
     // Mandatory empty constructor
