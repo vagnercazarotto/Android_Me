@@ -26,12 +26,16 @@ import android.widget.ImageView;
 
 import com.example.android.android_me.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BodyPartFragment extends Fragment {
 
     // Tag for logging
     private static final String TAG = "BodyPartFragment";
+
+    public static final String IMAGE_ID_LIST = "image_ids";
+    public static final String LIST_INDEX = "list_index";
 
     // Variables to store a list of image resources and the index of the image that this fragment displays
     private List<Integer> mImageIds;
@@ -48,6 +52,15 @@ public class BodyPartFragment extends Fragment {
      */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        // should load the on saved instance bundle
+        if (savedInstanceState != null){
+            mImageIds = savedInstanceState.getIntegerArrayList(IMAGE_ID_LIST);
+            mListIndex = savedInstanceState.getInt(LIST_INDEX);
+        }
+
+
+
 
         // Inflate the Android-Me fragment layout
         View rootView = inflater.inflate(R.layout.fragment_body_part, container, false);
@@ -82,6 +95,15 @@ public class BodyPartFragment extends Fragment {
         // Return the rootView
         return rootView;
     }
+
+    //// Save the state of the fragment
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putIntegerArrayList(IMAGE_ID_LIST, (ArrayList<Integer>) mImageIds);
+        outState.putInt(LIST_INDEX, mListIndex);
+    }
+
 
     // Setter methods for keeping track of the list images this fragment can display and which image
     // in the list is currently being displayed
